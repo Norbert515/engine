@@ -11,6 +11,7 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:flutter_kernel_transformers/track_widget_constructor_locations.dart';
+import 'package:flutter_kernel_transformers/transformer_tests.dart';
 import 'package:vm/incremental_compiler.dart';
 import 'package:vm/frontend_server.dart' as frontend show FrontendCompiler,
     CompilerInterface, listenAndCompile, argParser, usage;
@@ -23,7 +24,7 @@ class _FlutterFrontendCompiler implements frontend.CompilerInterface{
   _FlutterFrontendCompiler(StringSink output,
       {bool trackWidgetCreation: false, bool unsafePackageSerialization}) :
           _compiler = new frontend.FrontendCompiler(output,
-          transformer: trackWidgetCreation ? new WidgetCreatorTracker() : null,
+          transformer: TestTransformer(),
           unsafePackageSerialization: unsafePackageSerialization);
 
   @override
